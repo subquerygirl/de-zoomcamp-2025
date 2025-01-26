@@ -1,5 +1,5 @@
 ./venv
-./keys
+keys/
 
 # Local .terraform directories
 **/.terraform/*
