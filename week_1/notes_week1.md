@@ -1,6 +1,9 @@
 
+# Notes - Week 1
+
 ## Set up
 ### Run postgres
+```
 docker run -it \
   -e POSTGRES_DB="ny_taxi" \
   -e POSTGRES_USER="root" \
@@ -10,11 +13,13 @@ docker run -it \
   --network=pg-network \
   --name pg-database \
   postgres:13
+```
 
 ### Access postgres with pgcli (no VE)
 pgcli -h localhost -p 5432 -u root -d ny_taxi
 
 ### Run pgAdmin
+```
   docker run -it \
     -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
     -e PGADMIN_DEFAULT_PASSWORD="root" \
@@ -22,9 +27,10 @@ pgcli -h localhost -p 5432 -u root -d ny_taxi
     --network=pg-network \
     --name pg-admin \
     dpage/pgadmin4
-
+```
 
 ## Ingest data py
+```
 python ingest_data.py \
     user=root \
     password=root \
@@ -32,16 +38,18 @@ python ingest_data.py \
     port=5432 \
     db=ny_taxi \
     table=yellow_taxi_data_2
+```
 
 ### Connect to database
-python ingest_data.py root root localhost 5432 ny_taxi yellow_taxi_data_2
+`python ingest_data.py root root localhost 5432 ny_taxi yellow_taxi_data_2`
 
 
 ## Load data
 ### Update docker file and build image with docker
-docker build -t green_taxi:v001 .
+`docker build -t green_taxi:v001 .`
 
 ### Load yellow taxi driver data
+```
 docker run -it \
     -v /Users/mariasamper/data-engineering-zoomcamp/ny_taxi_raw:/mnt/data \
     --network=pg-network \
@@ -53,9 +61,10 @@ docker run -it \
         --db=ny_taxi \
         --table=yellow_taxi_trips_3 \
         --file_path /mnt/data/yellow_tripdata_2021-01.csv
-
+```
 
 ### Load zone lookup data
+```
 docker run -it \
     -v /Users/mariasamper/data-engineering-zoomcamp/ny_taxi_raw:/mnt/data \
     --network=pg-network \
@@ -67,8 +76,10 @@ docker run -it \
         --db=ny_taxi \
         --table=taxi_zone_lookup \
         --file_path /mnt/data/taxi_zone_lookup.csv
+```
 
 ### Load green taxi driver data
+```
 docker run -it \
     -v /Users/mariasamper/data-engineering-zoomcamp/ny_taxi_raw:/mnt/data \
     --network=pg-network \
@@ -80,7 +91,15 @@ docker run -it \
         --db=ny_taxi \
         --table=green_taxi_trips \
         --file_path /mnt/data/green_tripdata_2019-10.csv
+```
 
+## Terraform - Basic commands
+- Format code: terraform fmt
+- Show what will it change: terraform plan
+- Apply changes: terraform apply
+- Delete everything: terraform destroy
+
+______
 
 ## Create repo in GitHub from existing folder
 `git init` in the folder.
@@ -90,4 +109,3 @@ Create a .gitignore file (optional).
 Create a repo on GitHub.
 `git remote add origin https://github.com/subquerygirl/de-zoomcamp-2025.git`
 `git push -u origin main`
-> Make it private
