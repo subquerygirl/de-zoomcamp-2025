@@ -1,17 +1,18 @@
-# Data Engineering Zoomcamp - Week 1 & 2
+# Data Engineering Zoomcamp - Week 1, 2 & 3
 
 ## 📖 About the Data Engineering Zoomcamp
 
 The **Data Engineering Zoomcamp** is an intensive, hands-on course designed to teach the fundamentals of data engineering. It covers key concepts such as data ingestion, workflow orchestration, cloud computing, and infrastructure as code. The course is structured into multiple weeks, each focusing on specific tools and techniques essential for modern data engineering.
 
-This repository contains my work and learnings from the first two weeks of the course, where I explored Docker, PostgreSQL, Terraform, Kestra, and GCP to build and manage data pipelines efficiently.
+This repository contains my work and learnings from the first three weeks of the course, where I explored Docker, PostgreSQL, Terraform, Kestra, GCP, and BigQuery to build and manage data pipelines efficiently.
 
 ## 📂 Repository Structure
 
 ```
 ├── homework
 │   ├── week_1
-│   └── week_2
+│   ├── week_2
+│   └── week_3
 ├── week_1
 │   ├── docker-postgres
 │   ├── terraform
@@ -20,12 +21,16 @@ This repository contains my work and learnings from the first two weeks of the c
 │   ├── kestra
 │   ├── postgres
 │   └── notes_week2.md
+├── week_3
+│   ├── download_script.yml
+│   └── external_table.sql
 └── README.md
 ```
-- **homework/**: Includes assignments for both Week 1 and Week 2.
-- **week\_1/**: Contains all materials and exercises related to Week 1, including Docker, PostgreSQL, and Terraform introduction.
-- **week\_2/**: Covers Kestra workflow orchestration, GCP integration, ingestion pipelines, and scheduling/backfills.
 
+- **homework/**: Includes assignments for Week 1, Week 2, and Week 3.
+- **week_1/**: Contains all materials and exercises related to Week 1, including Docker, PostgreSQL, and Terraform introduction.
+- **week_2/**: Covers Kestra workflow orchestration, GCP integration, ingestion pipelines, and scheduling/backfills.
+- **week_3/**: Focuses on data warehousing, BigQuery, and query optimization best practices.
 
 ## 🚀 Technologies Used
 
@@ -41,6 +46,10 @@ This repository contains my work and learnings from the first two weeks of the c
 
 - **Kestra**: Orchestrating and managing workflows for data pipelines.
 - **Google Cloud Platform (GCP)**: Cloud platform used for hosting and storing data.
+
+### Week 3:
+
+- **BigQuery**: Google’s fully managed data warehouse.
 
 ## 📦 Project Overview
 
@@ -82,6 +91,23 @@ This repository contains my work and learnings from the first two weeks of the c
 - Configured schedules to automate recurring data processing tasks.
 - Implemented backfill strategies to process historical data.
 
+### Week 3: Data Warehousing & BigQuery
+
+#### BigQuery Setup
+
+- Configured a BigQuery dataset and loaded structured data for analysis.
+- Understand external and materialised tables.
+
+#### Query Optimization
+
+- Implemented partitions and clustering strategies to improve performance.
+- Estimated and analyzed query costs using best practices.
+
+#### Performance Best Practices
+
+- Learned about schema design, table partitioning, and clustering to optimize query execution.
+- Used query execution plans to refine performance.
+
 ## 📝 What I’ve Learned
 
 ### Week 1:
@@ -98,7 +124,13 @@ This repository contains my work and learnings from the first two weeks of the c
 - Designing and implementing efficient ingestion pipelines.
 - Scheduling data pipelines and running backfills to process historical data.
 
+### Week 3:
+
+- Introduction to data warehousing concepts and best practices.
+- Working with Google BigQuery for scalable analytics.
+- Using partitions and clustering to optimize query performance.
+- Understanding query execution plans and cost estimation.
+
 ## 🔜 Next Steps
 
 - Moving forward, I will continue with further weeks of the Zoomcamp, focusing on additional data engineering concepts and technologies.
-
