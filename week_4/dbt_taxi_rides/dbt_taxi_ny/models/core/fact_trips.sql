@@ -22,7 +22,9 @@ trips_unioned as (
 dim_zones as (
     select * from {{ ref('dim_zones') }}
     where borough != 'Unknown'
-)
+),
+
+add_zones as (
 select trips_unioned.tripid, 
     trips_unioned.vendor_id, 
     trips_unioned.service_type,
@@ -54,3 +56,25 @@ inner join dim_zones as pickup_zone
 on trips_unioned.pickup_locationid = pickup_zone.locationid
 inner join dim_zones as dropoff_zone
 on trips_unioned.dropoff_locationid = dropoff_zone.locationid
+),
+
+add_date_dimensions as (
+    select *,
+        EXTRACT(YEAR FROM pickup_datetime) as pickup_year,
+        CASE 
+            WHEN EXTRACT(MONTH FROM pickup_datetime) BETWEEN 1 AND 3 THEN 'Q1'
+            WHEN EXTRACT(MONTH FROM pickup_datetime) BETWEEN 4 AND 6 THEN 'Q2'
+            WHEN EXTRACT(MONTH FROM pickup_datetime) BETWEEN 7 AND 9 THEN 'Q3'
+            WHEN EXTRACT(MONTH FROM pickup_datetime) BETWEEN 10 AND 12 THEN 'Q4'
+        END AS pickup_quarter,
+    from add_zones
+),
+
+add_combination as (
+    select *,
+        CONCAT(pickup_year, '/', pickup_quarter) as pickup_year_quarter
+    from add_date_dimensions
+)
+
+select *
+from add_date_dimensions
