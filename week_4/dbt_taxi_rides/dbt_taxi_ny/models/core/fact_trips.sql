@@ -77,4 +77,4 @@ add_combination as (
 )
 
 select *
-from add_date_dimensions
+from add_combination
