@@ -61,6 +61,7 @@ on trips_unioned.dropoff_locationid = dropoff_zone.locationid
 add_date_dimensions as (
     select *,
         EXTRACT(YEAR FROM pickup_datetime) as pickup_year,
+        EXTRACT(MONTH FROM pickup_datetime) AS pickup_month,
         CASE 
             WHEN EXTRACT(MONTH FROM pickup_datetime) BETWEEN 1 AND 3 THEN 'Q1'
             WHEN EXTRACT(MONTH FROM pickup_datetime) BETWEEN 4 AND 6 THEN 'Q2'

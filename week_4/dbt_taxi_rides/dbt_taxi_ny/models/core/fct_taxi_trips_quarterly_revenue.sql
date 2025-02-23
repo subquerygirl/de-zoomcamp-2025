@@ -4,7 +4,7 @@ WITH quarterly_revenue AS (
         pickup_quarter,
         service_type,
         SUM(total_amount) AS revenue
-    from {{ ref('fact_trips') }}
+    FROM {{ ref('fact_trips') }}
     GROUP BY pickup_year, pickup_quarter, service_type
 ),
 

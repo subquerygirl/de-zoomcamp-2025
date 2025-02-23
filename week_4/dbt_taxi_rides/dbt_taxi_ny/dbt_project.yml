@@ -33,7 +33,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_taxi_ny:
     staging:
-      materialized: view
+      materialized: table
     core:
       materialized: table
 
